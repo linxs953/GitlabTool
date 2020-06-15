@@ -16,6 +16,8 @@ import (
 )
 
 var CommandClient http.Client = http.Client{Timeout: time.Second * 3}
+var configDirName = "mt"
+var configFileName = "config.json"
 
 type Conf struct {
 	TOKEN           string
@@ -151,7 +153,7 @@ func Init() {
 	if homeEnv == "" {
 		fmt.Println("Get $HOME ENV nil")
 	}
-	configDir := homeEnv + "/.mt"
+	configDir := fmt.Sprintf("%s/.%s", homeEnv, configDirName)
 	if !Exists(configDir) {
 		err := os.Mkdir(configDir, os.ModePerm)
 		if err != nil {
@@ -163,7 +165,7 @@ func Init() {
 			log.Error().Err(err).Msg("创建目录失败")
 			return
 		}
-		configFilePath := homeEnv + "/.mt/config.json"
+		configFilePath := fmt.Sprintf("%s/.%s/%s", homeEnv, configDirName, configFileName)
 		if !Exists(configFilePath) {
 			newJwtConfigJson()
 		}
@@ -176,7 +178,7 @@ func GetConfigPath() string {
 		fmt.Println("Get $HOME ENV nil")
 		return ""
 	}
-	path := homeEnv + "/.mt/"
+	path := fmt.Sprintf("%s/.%s", homeEnv, configDirName)
 	return path
 }
 
