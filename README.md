@@ -10,10 +10,19 @@
 
 
 ```shell
+## 通过模板新建一个issue
 1. mt new [issue_title] [issue-template-filename] [assignee-name]
-2. mt cicd
-3. mt config [key] [value] (Change current group and project config key )
-4. mt list [groups] / [projects]
-5. mt sw group / project [group_name] / [project_name]
+
+## 根据当前`project`打开对应的cicd地址
+2. mt cicd 
+
+## 更改这个配置文件已存在的key的值  
+3. mt config [key] [value]
+
+## 列出当前有权限的group和project
+4. mt list [groups] / [projects] 
+
+## 更改当前的group和project
+5. mt sw group [group_name] / project [project_name] 
 
 ```
